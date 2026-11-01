@@ -1,0 +1,28 @@
+state_dir = "data"
+sites = ["jingzhe", "sfcju", "saturday"]
+
+[checkiner]
+timeout = 240
+retries = 4
+concurrency = 1
+max_duration = 900
+
+[[accounts]]
+name = "main"
+phone = "+12345678900"
+# 在 https://my.telegram.org/apps 创建自己的应用后填写：
+api_id = 12345
+api_hash = "00000000000000000000000000000000"
+
+# 如需代理，取消注释：
+# [proxy]
+# scheme = "socks5"
+# hostname = "127.0.0.1"
+# port = 1080
+
+# 同类机器人可以直接加到 sites，例如："templ_a<ExampleBot>"
+# [checkiner."templ_a<ExampleBot>"]
+# command = "/start"
+# button_keywords = ["签到", "簽到"]
+# use_captcha = true
+# success_pattern = "签到成功"
