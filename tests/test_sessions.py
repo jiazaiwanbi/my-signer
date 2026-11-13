@@ -54,6 +54,7 @@ async def test_failed_connection_never_relogs_or_deletes_session(tmp_path, monke
         is_connected = False
         def __init__(self, **kwargs):
             assert kwargs["in_memory"] is True
+            assert kwargs["sleep_threshold"] == 10
         async def start(self):
             starts.append(1)
             raise RuntimeError("SESSION_REVOKED")

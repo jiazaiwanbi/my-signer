@@ -166,10 +166,11 @@ class TemplateACheckin:
 
     async def _start(self):
         self.ctx.start(RunStatus.INITIALIZING)
-        chat = await self.client.get_chat(self.bot_username)
         bot = await self.client.get_users(self.bot_username)
         if not bot.is_bot:
             return self.ctx.finish(RunStatus.ERROR, "配置的目标不是机器人")
+        # Only the bot ID is needed; get_chat() defaults to users.GetFullUser.
+        chat = bot
         # Some API responses report count=0 even when history exists; inspect one message.
         has_history = False
         async for _ in self.client.get_chat_history(chat.id, limit=1):

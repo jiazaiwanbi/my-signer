@@ -32,10 +32,10 @@ class FakeClient:
                 pass
 
     async def get_chat(self, username):
-        return NS(id=123)
+        pytest.fail("The check-in flow must not request a full bot profile")
 
     async def get_users(self, username):
-        return NS(is_bot=True)
+        return NS(id=123, is_bot=True)
 
     async def get_chat_history(self, chat, limit=1):
         yield message("old message")

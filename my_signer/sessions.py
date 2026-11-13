@@ -109,7 +109,8 @@ async def connected(settings, account):
         device_model=account.device_model, system_version=account.system_version,
         app_version=account.app_version,
         proxy=settings.proxy.pyrogram() if settings.proxy else None,
-        workers=4, sleep_threshold=0,
+        # Respect short server-requested waits, within the 45-second start limit.
+        workers=4, sleep_threshold=10,
     )
     try:
         await asyncio.wait_for(client.start(), timeout=45)
